@@ -21,6 +21,8 @@ jobs:
           zip codeedit-cli.zip codeedit-cli
           cd ../../../../
 
+      # CODESIGN & NOTARIZE THE BINARY
+
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -39,5 +41,5 @@ jobs:
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: .build/apple/Products/Release/codeedit-cli.zip
-          asset_name: codeedit-cli-${{ github.ref_name }}.zip
+          asset_name: codeedit-cli-binary.zip
           asset_content_type: application/zip
