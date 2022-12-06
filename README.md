@@ -12,7 +12,7 @@
   </a>
 </p>
 
-`codeedit` a set of command line tools that ship with CodeEdit which allow users to open and interact with editor via the command line.
+`codeedit` is a set of command line tools that ship with CodeEdit which allow users to open and interact with editor via the command line.
 
 ## Documentation
 
