@@ -16,6 +16,6 @@ let package = Package(
             name: "CodeEditCLI",
             dependencies: [
                 .product(name: "ArgumentParser", package: "swift-argument-parser")
-            ]),
+            ])
     ]
 )
