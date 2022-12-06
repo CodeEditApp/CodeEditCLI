@@ -23,6 +23,8 @@ swift build -c release --arch arm64 --arch x86_64
 sudo cp -f .build/apple/Products/Release/codeedit-cli /usr/local/bin/codeedit-cli
 ```
 
+> Note that you must have `CodeEdit` installed in a `Release` configuration. A `Debug` build of `CodeEdit` will not work.
+
 ## Documentation
 
 ### `open`
