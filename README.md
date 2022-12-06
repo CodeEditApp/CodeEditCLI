@@ -20,13 +20,13 @@
 
 Opens CodeEdit.
 
-## Folder
+### Folder
 
 ```sh
 codeedit ./my-project
 ```
 
-## File
+### File
 
 ```sh
 codeedit index.html
