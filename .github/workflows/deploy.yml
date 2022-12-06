@@ -16,10 +16,10 @@ jobs:
 
       - name: Building
         run: |
-          swift build -c release
-          cd .build/release
+          swift build -c release --arch arm64 --arch x86_64
+          cd .build/apple/Products/Release/
           zip codeedit-cli.zip codeedit-cli
-          cd ../..
+          cd ../../../../
 
       - name: Create Release
         id: create_release
