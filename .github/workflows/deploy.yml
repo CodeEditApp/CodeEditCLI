@@ -1,0 +1,43 @@
+name: Deploy
+on:
+  workflow_dispatch:
+  workflow_call:
+  push:
+    tags:
+      - '*.*.*'
+
+jobs:
+  deploy-codeedit-cli:
+    name: Deploying CodeEdit CLI
+    runs-on: macos-12
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Building
+        run: |
+          swift build -c release
+          cd .build/release
+          zip codeedit-cli.zip codeedit-cli
+          cd ../..
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ github.ref }}
+          draft: false
+          prerelease: false
+      
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: .build/release/codeedit-cli.zip
+          asset_name: codeedit-cli-${{ github.ref }}.zip
+          asset_content_type: application/zip

@@ -1,0 +1,18 @@
+name: Build
+on:
+  workflow_dispatch:
+  workflow_call:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build-codeedit-cli:
+    name: Building CodeEdit CLI
+    runs-on: macos-12
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Building
+        run: swift build -c release
