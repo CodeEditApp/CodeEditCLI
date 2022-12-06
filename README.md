@@ -14,6 +14,15 @@
 
 `codeedit` is a set of command line tools that ship with CodeEdit which allow users to open and interact with editor via the command line.
 
+## Installation
+
+### Build locally
+
+```sh
+swift build -c release --arch arm64 --arch x86_64
+sudo cp -f .build/apple/Products/Release/codeedit-cli /usr/local/bin/codeedit-cli
+```
+
 ## Documentation
 
 ### `open`
