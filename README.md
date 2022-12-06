@@ -16,7 +16,7 @@
 
 ## Documentation
 
-### `open`
+### `open` (not available yet)
 
 Opens CodeEdit.
 
@@ -35,16 +35,16 @@ codeedit index.html
 From an optional line
 
 ```sh
-codeedit index.html:50
+codeedit index.html -l 50
 ```
 
 From an optional line and column
 
 ```sh
-codeedit index.html:50:15
+codeedit index.html -l 50 -c 50
 ```
 
-### `--version`
+### `--version` (not available yet)
 
 Outputs the version of CodeEdit and CodeEdit CLI Tools.
 
@@ -58,7 +58,7 @@ or
 codeedit -v
 ```
 
-### `new-window`
+### `new-window` (not available yet)
 
 Opens a new window.
 
@@ -66,35 +66,35 @@ Opens a new window.
 codeedit new-window
 ```
 
-### `--goto`
+### `--goto` (not available yet)
 
 Opens a file at a line and optional position.
 
 Documentation coming soon.
 
-### `list-extensions`
+### `list-extensions` (not available yet)
 
 Documentation coming soon.
 
-### `install`
+### `install` (not available yet)
 
 Install an extension.
 
 Documentation coming soon.
 
-### `uninstall`
+### `uninstall` (not available yet)
 
 Uninstall an extension.
 
 Documentation coming soon.
 
-### `activate`
+### `activate` (not available yet)
 
 Activate an extension.
 
 Documentation coming soon.
 
-### `deactivate`
+### `deactivate` (not available yet)
 
 Deactivate an extension.
 
