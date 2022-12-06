@@ -16,7 +16,7 @@
 
 ## Documentation
 
-### `open` (not available yet)
+### `open`
 
 Opens CodeEdit.
 
@@ -44,18 +44,12 @@ From an optional line and column
 codeedit index.html -l 50 -c 50
 ```
 
-### `--version` (not available yet)
+### `version`
 
 Outputs the version of CodeEdit and CodeEdit CLI Tools.
 
 ```sh
-codeedit --version
-```
-
-or 
-
-```sh
-codeedit -v
+codeedit version
 ```
 
 ### `new-window` (not available yet)
