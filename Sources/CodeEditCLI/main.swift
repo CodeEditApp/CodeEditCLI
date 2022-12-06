@@ -30,6 +30,7 @@ struct CodeEditCLI: ParsableCommand {
 
     enum CLIError: Error {
         case invalidWorkingDirectory
+        case invalidFileURL
     }
 }
 
