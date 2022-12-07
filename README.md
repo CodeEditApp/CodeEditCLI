@@ -16,6 +16,10 @@
 
 ## Installation
 
+### Download
+
+Download the universal binary from the latest release, extract the zip and move it to `/usr/local/bin/`.
+
 ### Build locally
 
 ```sh
