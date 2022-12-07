@@ -38,25 +38,25 @@ Opens CodeEdit.
 ### Folder
 
 ```sh
-codeedit ./my-project
+codeedit-cli ./my-project
 ```
 
 ### File
 
 ```sh
-codeedit index.html
+codeedit-cli index.html
 ```
 
 From an optional line
 
 ```sh
-codeedit index.html:50
+codeedit-cli index.html:50
 ```
 
 From an optional line and column
 
 ```sh
-codeedit index.html:50:50
+codeedit-cli index.html:50:50
 ```
 
 ### `version`
@@ -64,7 +64,7 @@ codeedit index.html:50:50
 Outputs the version of CodeEdit and CodeEdit CLI Tools.
 
 ```sh
-codeedit version
+codeedit-cli version
 ```
 
 ### `new-window` (not available yet)
@@ -72,7 +72,7 @@ codeedit version
 Opens a new window.
 
 ```sh
-codeedit new-window
+codeedit-cli new-window
 ```
 
 ### `--goto` (not available yet)
