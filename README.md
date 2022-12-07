@@ -50,13 +50,13 @@ codeedit index.html
 From an optional line
 
 ```sh
-codeedit index.html -l 50
+codeedit index.html:50
 ```
 
 From an optional line and column
 
 ```sh
-codeedit index.html -l 50 -c 50
+codeedit index.html:50:50
 ```
 
 ### `version`
