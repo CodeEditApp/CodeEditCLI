@@ -41,6 +41,7 @@ jobs:
         env:
           CODESIGN_SIGN: ${{ secrets.CODESIGN_SIGN }}
         run: |
+          security find-identity -p basic -v
           codesign --sign "$CODESIGN_SIGN" --prefix austincondiff.CodeEdit. --options=runtime --verbose --timestamp .build/apple/Products/Release/codeedit-cli
       - name: Zip
         run: zip -r .build/apple/Products/Release/codeedit-cli.zip .build/apple/Products/Release/codeedit-cli
