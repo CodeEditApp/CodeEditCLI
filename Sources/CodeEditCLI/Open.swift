@@ -56,20 +56,31 @@ extension CodeEditCLI {
         }
 
         private func extractLineColumn(_ path: String) throws -> (path: String, line: Int?, column: Int?) {
-            let components = path.split(separator: ":")
-            let path = String(components[0])
 
+            // split the string at `:` to get line and column numbers
+            let components = path.split(separator: ":")
+
+            // set path to only the first component
+            guard let first = components.first else {
+                throw CLIError.invalidFileURL
+            }
+            let path = String(first)
+
+            // switch on the number of components
             switch components.count {
-            case 1:
+            case 1: // no line or column number provided
                 return (path, nil, nil)
-            case 2:
+
+            case 2: // only line number provided
                 guard let row = Int(components[1]) else { throw CLIError.invalidFileURL }
                 return (path, row, nil)
-            case (3...):
+
+            case 3: // line and column number provided
                 guard let row = Int(components[1]),
                       let column = Int(components[2]) else { throw CLIError.invalidFileURL }
                 return (path, row, column)
-            default:
+
+            default: // any other case throw an error since this is invalid
                 throw CLIError.invalidFileURL
             }
         }
