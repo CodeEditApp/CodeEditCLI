@@ -46,7 +46,10 @@ jobs:
           codesign --sign "$CODESIGN_SIGN" --prefix austincondiff.CodeEdit. --options=runtime --verbose --timestamp .build/apple/Products/Release/codeedit-cli
 
       - name: Zip
-        run: zip -r .build/apple/Products/Release/codeedit-cli.zip .build/apple/Products/Release/codeedit-cli
+        run: |
+          cd .build/apple/Products/Release
+          zip -r codeedit-cli.zip codeedit-cli
+          cd ../../../../
 
       - name: Notarize
         env:
