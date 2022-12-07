@@ -11,7 +11,7 @@ import Foundation
 // ##################################################
 //  This needs to be changed prior to every release!
 // ##################################################
-let CLI_VERSION = "0.0.3"
+let CLI_VERSION = "0.0.5"
 
 struct CodeEditCLI: ParsableCommand {
     static let configuration = CommandConfiguration(
@@ -30,6 +30,7 @@ struct CodeEditCLI: ParsableCommand {
 
     enum CLIError: Error {
         case invalidWorkingDirectory
+        case invalidFileURL
     }
 }
 

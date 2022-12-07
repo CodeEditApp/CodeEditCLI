@@ -16,16 +16,13 @@ extension CodeEditCLI {
         )
 
         @Argument(
-            help: "The path of a file/folder to open.",
+            help: """
+            The path of a file/folder to open.
+            When opening files, line and column numbers can be appended: `index.html:42:10`
+            """,
             completion: .file()
         )
         private var path: String?
-
-        @Option(name: .shortAndLong, help: "The line number to open a file at. Optional.")
-        private var line: Int?
-
-        @Option(name: .shortAndLong, help: "The column to open a file at. Optional.")
-        private var column: Int?
 
         func run() throws {
             let task = Process()
@@ -34,7 +31,7 @@ extension CodeEditCLI {
             task.launchPath = "/usr/bin/open"
 
             if let path {
-
+                let (path, line, column) = try extractLineColumn(path)
                 let openURL = try absolutePath(path, for: task)
 
                 // open CodeEdit using the url scheme
@@ -56,6 +53,36 @@ extension CodeEditCLI {
                 throw CLIError.invalidWorkingDirectory
             }
             return url
+        }
+
+        private func extractLineColumn(_ path: String) throws -> (path: String, line: Int?, column: Int?) {
+
+            // split the string at `:` to get line and column numbers
+            let components = path.split(separator: ":")
+
+            // set path to only the first component
+            guard let first = components.first else {
+                throw CLIError.invalidFileURL
+            }
+            let path = String(first)
+
+            // switch on the number of components
+            switch components.count {
+            case 1: // no line or column number provided
+                return (path, nil, nil)
+
+            case 2: // only line number provided
+                guard let row = Int(components[1]) else { throw CLIError.invalidFileURL }
+                return (path, row, nil)
+
+            case 3: // line and column number provided
+                guard let row = Int(components[1]),
+                      let column = Int(components[2]) else { throw CLIError.invalidFileURL }
+                return (path, row, column)
+
+            default: // any other case throw an error since this is invalid
+                throw CLIError.invalidFileURL
+            }
         }
     }
 }
