@@ -6,7 +6,7 @@
 //
 
 import ArgumentParser
-import Foundation
+import AppKit
 
 extension CodeEditCLI {
     struct Version: ParsableCommand {
@@ -20,7 +20,7 @@ extension CodeEditCLI {
             print("CodeEditCLI: \t\(CLI_VERSION)")
 
             // File URL of CodeEdit.app
-            let appURL = URL(fileURLWithPath: "/Applications/CodeEdit.app")
+            let appURL = NSWorkspace.shared.urlForApplication(withBundleIdentifier: "austincondiff.CodeEdit")
 
             // Check if there is an Info.plist inside CodeEdit.app
             // Then get the version number and print it out
