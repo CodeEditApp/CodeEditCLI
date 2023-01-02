@@ -43,12 +43,12 @@ jobs:
           CODESIGN_SIGN: ${{ secrets.CODESIGN_SIGN }}
         run: |
           security find-identity -p basic -v
-          codesign --sign "$CODESIGN_SIGN" --prefix austincondiff.CodeEdit. --options=runtime --verbose --timestamp .build/apple/Products/Release/codeedit-cli
+          codesign --sign "$CODESIGN_SIGN" --prefix austincondiff.CodeEdit. --options=runtime --verbose --timestamp .build/apple/Products/Release/codeedit
 
       - name: Zip
         run: |
           cd .build/apple/Products/Release
-          zip -r codeedit-cli.zip codeedit-cli
+          zip -r codeedit-cli.zip codeedit
           cd ../../../../
 
       - name: Notarize
