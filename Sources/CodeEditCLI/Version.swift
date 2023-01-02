@@ -35,20 +35,6 @@ extension CodeEditCLI {
             }
         }
 
-        private func codeEditURLData() throws -> Data {
-            let task = Process()
-            let pipe = Pipe()
-            task.standardOutput = pipe
-            task.launchPath = "/usr/bin/osascript"
-
-            task.arguments = ["-e"]
-            task.arguments?.append("POSIX path of (path to application \"CodeEdit\")")
-
-            try task.run()
-
-            return pipe.fileHandleForReading.readDataToEndOfFile()
-        }
-
         private func infoPlistUrl(_ url: URL?) -> URL? {
             if let url = url?.appendingPathComponent("Contents")
                              .appendingPathComponent("Info.plist") {
