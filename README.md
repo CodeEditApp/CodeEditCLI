@@ -16,6 +16,17 @@
 
 ## Installation
 
+### Homebrew (Recommended)
+
+```sh
+brew install codeeditapp/formulae/codeedit-cli
+
+# or 
+
+brew tap codeeditapp/formulae
+brew install codeedit-cli
+```
+
 ### Download
 
 Download the universal binary from the latest release, extract the zip and move it to `/usr/local/bin/`.
