@@ -24,7 +24,7 @@ Download the universal binary from the latest release, extract the zip and move 
 
 ```sh
 swift build -c release --arch arm64 --arch x86_64
-sudo cp -f .build/apple/Products/Release/codeedit-cli /usr/local/bin/codeedit-cli
+sudo cp -f .build/apple/Products/Release/codeedit /usr/local/bin/codeedit
 ```
 
 > Note that you must have `CodeEdit` installed in a `Release` configuration. A `Debug` build of `CodeEdit` will not work.
@@ -38,25 +38,25 @@ Opens CodeEdit.
 ### Folder
 
 ```sh
-codeedit-cli ./my-project
+codeedit ./my-project
 ```
 
 ### File
 
 ```sh
-codeedit-cli index.html
+codeedit index.html
 ```
 
 From an optional line
 
 ```sh
-codeedit-cli index.html:50
+codeedit index.html:50
 ```
 
 From an optional line and column
 
 ```sh
-codeedit-cli index.html:50:50
+codeedit index.html:50:50
 ```
 
 ### `version`
@@ -64,7 +64,7 @@ codeedit-cli index.html:50:50
 Outputs the version of CodeEdit and CodeEdit CLI Tools.
 
 ```sh
-codeedit-cli version
+codeedit version
 ```
 
 ### `new-window` (not available yet)
@@ -72,7 +72,7 @@ codeedit-cli version
 Opens a new window.
 
 ```sh
-codeedit-cli new-window
+codeedit new-window
 ```
 
 ### `--goto` (not available yet)
