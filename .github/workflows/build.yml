@@ -12,7 +12,7 @@ on:
 jobs:
   build-codeedit-cli:
     name: Building CodeEdit CLI
-    runs-on: macos-12
+    runs-on: [self-hosted, macOS]
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
