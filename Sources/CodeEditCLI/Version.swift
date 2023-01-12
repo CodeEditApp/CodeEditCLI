@@ -15,7 +15,16 @@ extension CodeEditCLI {
             abstract: "Prints the version of the CLI and CodeEdit.app."
         )
 
+        @Flag(name: .shortAndLong, help: "Only prints the version number of the CLI")
+        var terse = false
+
         func run() throws {
+            // if terse flag is set only print the cli version number
+            if terse {
+                print(CLI_VERSION)
+                return
+            }
+
             // Print the cli version
             print("CodeEditCLI: \t\(CLI_VERSION)")
 
