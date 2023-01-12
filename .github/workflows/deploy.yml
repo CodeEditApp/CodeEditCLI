@@ -30,6 +30,7 @@ jobs:
           security create-keychain -p "$KEYCHAIN_PWD" "$KEYCHAIN_DB"
           security set-keychain-settings -lut "$KEYCHAIN_TIMEOUT" "$KEYCHAIN_DB"
           security unlock-keychain -p "$KEYCHAIN_PWD" "$KEYCHAIN_DB"
+          touch "$DEV_CERT_P12"
           ls "$RUNNER_TEMP"
           echo -n "$DEV_CERT_B64" | base64 --decode --output "$DEV_CERT_P12"
           ls "$RUNNER_TEMP"
