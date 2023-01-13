@@ -1,0 +1,16 @@
+name: CI - Push to main
+on: 
+  pull_request:
+    branches:
+      - 'main'
+  workflow_dispatch:
+jobs:
+  swiftlint:
+    name: SwiftLint
+    uses: ./.github/workflows/swiftlint.yml
+    secrets: inherit
+  test:
+    name: Build CodeEdit CLI
+    needs: swiftlint
+    uses: ./.github/workflows/build.yml
+    secrets: inherit

@@ -2,9 +2,6 @@ name: Deploy
 on:
   workflow_dispatch:
   workflow_call:
-  push:
-    tags:
-      - '*.*.*'
 
 jobs:
   deploy-codeedit-cli:
@@ -12,7 +9,7 @@ jobs:
     runs-on: [self-hosted, macOS]
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Install codesign certificate
         env:
