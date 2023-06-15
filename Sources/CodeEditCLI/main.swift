@@ -11,7 +11,7 @@ import Foundation
 // ##################################################
 //  This needs to be changed prior to every release!
 // ##################################################
-let CLI_VERSION = "0.0.9"
+let CLI_VERSION = "0.0.10"
 
 struct CodeEditCLI: ParsableCommand {
     static let configuration = CommandConfiguration(

@@ -40,7 +40,7 @@ jobs:
           CODESIGN_SIGN: ${{ secrets.CODESIGN_SIGN }}
         run: |
           security find-identity -p basic -v
-          codesign --sign "$CODESIGN_SIGN" --prefix austincondiff.CodeEdit. --options=runtime --verbose --timestamp .build/apple/Products/Release/codeedit
+          codesign --sign "$CODESIGN_SIGN" --prefix app.codeedit.CodeEdit. --options=runtime --verbose --timestamp .build/apple/Products/Release/codeedit
 
       - name: Zip
         run: |
