@@ -15,6 +15,9 @@ extension CodeEditCLI {
             abstract: "A command-line tool to open files/folders in CodeEdit.app."
         )
 
+        @Flag(name: .shortAndLong, help: "Open the editor in a new instance.")
+        private var newWindow = false
+        
         @Argument(
             help: """
             The path of a file/folder to open.
@@ -30,6 +33,7 @@ extension CodeEditCLI {
             // use the `open` cli as the executable
             task.launchPath = "/usr/bin/open"
 
+            
             if let path {
                 let (path, line, column) = try extractLineColumn(path)
                 let openURL = try absolutePath(path, for: task)
@@ -43,7 +47,11 @@ extension CodeEditCLI {
             } else {
                 task.arguments = ["-a", "CodeEdit.app"]
             }
-
+            
+            if newWindow {
+                task.arguments?.append("-n")
+            }
+            
             try task.run()
         }
 
