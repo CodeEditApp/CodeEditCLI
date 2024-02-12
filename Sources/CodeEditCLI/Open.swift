@@ -26,19 +26,42 @@ extension CodeEditCLI {
 
         func run() throws {
             let task = Process()
+            let fileManager = FileManager.default
 
             // use the `open` cli as the executable
             task.launchPath = "/usr/bin/open"
 
-            if let path {
-                let (path, line, column) = try extractLineColumn(path)
-                let openURL = try absolutePath(path, for: task)
+            if let path = path {
+                let (filePath, line, column) = try extractLineColumn(path)
+                let openURL = try absolutePath(filePath, for: task)
 
-                // open CodeEdit using the url scheme
-                if let line, !openURL.hasDirectoryPath {
-                    task.arguments = ["-u", "codeedit://\(openURL.path):\(line):\(column ?? 1)"]
+                // Create directories if they don't exist
+                let directoryURL = openURL.deletingLastPathComponent()
+                do {
+                    try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+                } catch {
+                    print("Failed to create directory at \(directoryURL.path): \(error)")
+                    return
+                }
+
+                if fileManager.fileExists(atPath: openURL.path) {
+                    // File exists, proceed to open it
+                    if let line = line, !openURL.hasDirectoryPath {
+                        task.arguments = ["-u", "codeedit://\(openURL.path):\(line):\(column ?? 1)"]
+                    } else {
+                        task.arguments = ["-u", "codeedit://\(openURL.path)"]
+                    }
                 } else {
-                    task.arguments = ["-u", "codeedit://\(openURL.path)"]
+                    // File doesn't exist, create one
+                    let success = fileManager.createFile(atPath: openURL.path, contents: nil, attributes: nil)
+                    if success {
+                        // Proceed to open the newly created file
+                        task.arguments = ["-u", "codeedit://\(openURL.path)"]
+                    } else {
+                        // Handle error if file creation fails
+                        print("Failed to create file at \(openURL.path)")
+                        return
+                    }
                 }
             } else {
                 task.arguments = ["-a", "CodeEdit.app"]
