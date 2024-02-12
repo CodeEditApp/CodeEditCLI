@@ -38,7 +38,11 @@ extension CodeEditCLI {
                 // Create directories if they don't exist
                 let directoryURL = openURL.deletingLastPathComponent()
                 do {
-                    try fileManager.createDirectory(at: directoryURL, withIntermediateDirectories: true, attributes: nil)
+                    try fileManager.createDirectory(
+                        at: directoryURL,
+                        withIntermediateDirectories: true,
+                        attributes: nil
+                    )
                 } catch {
                     print("Failed to create directory at \(directoryURL.path): \(error)")
                     return
