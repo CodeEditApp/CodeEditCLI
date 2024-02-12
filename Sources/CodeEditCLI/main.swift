@@ -26,8 +26,6 @@ struct CodeEditCLI: ParsableCommand {
         defaultSubcommand: Open.self
     )
 
-    init() {}
-
     enum CLIError: Error {
         case invalidWorkingDirectory
         case invalidFileURL
